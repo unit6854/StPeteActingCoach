@@ -4,6 +4,7 @@ import data from "../content/homepage.json";
 
 const { seo } = data;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
 ---
 
 <!doctype html>
@@ -15,16 +16,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={canonical} />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="St. Pete Acting Coach" />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
-    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Gillian Arnold Atlas — On-Camera Acting Coach, St. Petersburg, Florida" />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
