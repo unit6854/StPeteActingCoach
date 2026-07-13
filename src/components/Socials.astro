@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+interface Props { items: any[]; align?: "center" | "left"; }
+const { items = [], align = "center" } = Astro.props;
+
+const labels: Record<string, string> = {
+  facebook: "Facebook",
+  linkedin: "LinkedIn",
+  instagram: "Instagram",
+  youtube: "YouTube",
+  tiktok: "TikTok",
+  x: "X",
+  imdb: "IMDb",
+};
+---
+<div class={`socials socials--${align}`}>
+  {items.map((s: any) => (
+    <a
+      class="social-btn"
+      href={s.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={labels[s.platform] ?? s.platform}
+    >
+      <Icon name={s.platform} class="icon" />
+    </a>
+  ))}
+</div>

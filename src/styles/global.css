@@ -961,18 +961,48 @@ html {
 }
 .contact__chip svg { color: var(--gold); width: 18px; height: 18px; }
 .contact__chip:hover { border-color: var(--gold); color: var(--gold-bright); transform: translateY(-2px); }
-.contact__socials { margin-top: 2rem; display: flex; gap: 0.9rem; justify-content: center; }
+.socials { display: flex; gap: 0.85rem; }
+.socials--center { margin-top: 2rem; justify-content: center; }
+.socials--left { margin-top: 1.4rem; justify-content: flex-start; }
+
 .social-btn {
-  width: 46px;
-  height: 46px;
+  position: relative;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 14px;
   color: var(--gold);
-  transition: all 0.35s var(--ease);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.45s var(--ease), color 0.45s var(--ease),
+    border-color 0.45s var(--ease), box-shadow 0.45s var(--ease);
 }
-.social-btn:hover { background: var(--gold); color: #1a1206; transform: translateY(-3px); box-shadow: 0 12px 26px -12px rgba(201,161,92,0.6); }
+/* gold fill sweeps up from the bottom on hover */
+.social-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+  transform: translateY(101%);
+  transition: transform 0.45s var(--ease);
+}
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.45s var(--ease);
+}
+.social-btn:hover {
+  color: #1a1206;
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px -14px rgba(201, 161, 92, 0.7);
+}
+.social-btn:hover::before { transform: translateY(0); }
+.social-btn:hover svg { transform: scale(1.12) rotate(-4deg); }
 
 /* ==========================================================================
    SERVICE STRIP + FOOTER
@@ -1028,9 +1058,10 @@ html {
   padding-bottom: 2.4rem;
   border-bottom: 1px solid var(--line-soft);
 }
-.footer__brand { display: flex; align-items: center; gap: 0.85rem; }
-.footer__brand .brand__tile { width: 52px; height: 52px; }
-.footer__tagline { color: var(--muted); max-width: 34ch; margin: 1rem 0 0; font-size: 0.9rem; }
+.footer__intro { max-width: 340px; }
+.footer__brand { display: inline-flex; align-items: center; }
+.footer__logo { height: 104px; width: auto; display: block; }
+.footer__tagline { color: var(--muted); max-width: 34ch; margin: 1.1rem 0 0; font-size: 0.9rem; }
 .footer__links { display: flex; gap: 2.4rem; flex-wrap: wrap; }
 .footer__col h4 {
   font-size: 0.68rem;

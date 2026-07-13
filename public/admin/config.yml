@@ -198,18 +198,23 @@ collections:
           # ---------- SOCIAL ----------
           - label: "Social Links"
             name: "social"
-            widget: "object"
+            widget: "list"
+            label_singular: "Social Link"
+            summary: "{{fields.platform}}"
             fields:
-              - { label: "Facebook URL", name: "facebook", widget: "string" }
-              - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
+              - label: "Platform"
+                name: "platform"
+                widget: "select"
+                options: ["facebook", "linkedin", "instagram", "youtube", "tiktok", "x", "imdb"]
+              - { label: "URL", name: "url", widget: "string" }
 
           # ---------- FOOTER ----------
           - label: "Footer"
             name: "footer"
             widget: "object"
             fields:
-              - { label: "Logo Tile", name: "logoTile", widget: "image" }
-              - { label: "Brand Line 1", name: "brandLine1", widget: "string" }
-              - { label: "Brand Line 2", name: "brandLine2", widget: "string" }
+              - { label: "Logo", name: "logo", widget: "image" }
+              - { label: "Brand Line 1 (for accessibility)", name: "brandLine1", widget: "string" }
+              - { label: "Brand Line 2 (for accessibility)", name: "brandLine2", widget: "string" }
               - { label: "Tagline", name: "tagline", widget: "text" }
               - { label: "Copyright", name: "copyright", widget: "string" }

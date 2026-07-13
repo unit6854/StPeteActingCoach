@@ -151,12 +151,12 @@
     "ctaLabel": "Email Gillian",
     "location": "St. Petersburg, Florida"
   },
-  "social": {
-    "facebook": "https://www.facebook.com/GillianActingCoach/",
-    "linkedin": "https://www.linkedin.com/in/gillianarnold888/"
-  },
+  "social": [
+    { "platform": "facebook", "url": "https://www.facebook.com/GillianActingCoach/" },
+    { "platform": "linkedin", "url": "https://www.linkedin.com/in/gillianarnold888/" }
+  ],
   "footer": {
-    "logoTile": "/images/nav-tile.png",
+    "logo": "/images/footer-logo.png",
     "brandLine1": "ACTING COACH",
     "brandLine2": "GILLIAN ARNOLD ATLAS",
     "tagline": "On-camera acting coaching in St. Petersburg, Florida.",
