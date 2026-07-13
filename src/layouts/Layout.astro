@@ -1,8 +1,13 @@
 ---
 import "../styles/global.css";
+import Curtain from "../components/Curtain.astro";
 import data from "../content/homepage.json";
 
+interface Props { title?: string; description?: string; }
+const { title, description } = Astro.props;
 const { seo } = data;
+const pageTitle = title ?? seo.title;
+const pageDesc = description ?? seo.description;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
 ---
@@ -12,8 +17,8 @@ const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{seo.title}</title>
-    <meta name="description" content={seo.description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -23,16 +28,16 @@ const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="St. Pete Acting Coach" />
-    <meta property="og:title" content={seo.title} />
-    <meta property="og:description" content={seo.description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Gillian Arnold Atlas — On-Camera Acting Coach, St. Petersburg, Florida" />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={seo.title} />
-    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDesc} />
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Fonts -->
@@ -46,6 +51,7 @@ const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
     <meta name="theme-color" content="#07080c" />
   </head>
   <body>
+    <Curtain />
     <div class="spotlight" id="spotlight" aria-hidden="true"></div>
     <slot />
 
@@ -58,8 +64,9 @@ const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
       ).matches;
 
       /* ---- Smooth momentum scrolling ------------------------------------ */
+      let lenis: any = null;
       if (!reduce) {
-        const lenis = new Lenis({
+        lenis = new Lenis({
           duration: 1.1,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
@@ -69,21 +76,59 @@ const ogImageUrl = new URL(seo.ogImage, Astro.site).href;
           requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+      }
 
-        // Anchor links -> smooth scroll via Lenis
-        document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(
-          (a) => {
-            a.addEventListener("click", (e) => {
-              const id = a.getAttribute("href");
-              if (!id || id === "#") return;
-              const el = document.querySelector(id);
+      // Same-page hash links -> smooth scroll; cross-page ones navigate normally
+      document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]').forEach(
+        (a) => {
+          a.addEventListener("click", (e) => {
+            const url = new URL(a.href, window.location.href);
+            if (
+              url.pathname === window.location.pathname &&
+              url.hash &&
+              url.hash !== "#"
+            ) {
+              const el = document.querySelector(url.hash);
               if (el) {
                 e.preventDefault();
-                lenis.scrollTo(el as HTMLElement, { offset: -70 });
+                if (lenis) lenis.scrollTo(el as HTMLElement, { offset: -70 });
+                else el.scrollIntoView({ behavior: "smooth" });
+                history.replaceState(null, "", url.hash);
               }
-            });
-          }
+            }
+          });
+        }
+      );
+
+      /* ---- Curtain page transition -------------------------------------- */
+      const curtain = document.getElementById("curtain");
+      // Open the curtain when we arrive via a curtain navigation
+      if (curtain && !reduce && sessionStorage.getItem("curtain") === "1") {
+        sessionStorage.removeItem("curtain");
+        curtain.classList.add("closed");
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            curtain.classList.remove("closed");
+            curtain.classList.add("opening");
+            setTimeout(() => curtain.classList.remove("opening"), 1100);
+          })
         );
+      }
+      // Trigger the curtain when navigating to the gallery
+      if (curtain && !reduce) {
+        document
+          .querySelectorAll<HTMLAnchorElement>('a[href="/gallery"], a[href="/gallery/"], a[data-curtain]')
+          .forEach((a) => {
+            a.addEventListener("click", (e) => {
+              const href = a.getAttribute("href") || "/gallery";
+              e.preventDefault();
+              sessionStorage.setItem("curtain", "1");
+              curtain.classList.add("closing");
+              setTimeout(() => {
+                window.location.href = href;
+              }, 950);
+            });
+          });
       }
 
       /* ---- Spotlight cursor --------------------------------------------- */

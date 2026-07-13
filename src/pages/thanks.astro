@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import data from "../content/homepage.json";
+---
+<Layout
+  title="Thank You | St. Pete Acting Coach"
+  description="Thank you for reaching out to Gillian Arnold Atlas."
+>
+  <Nav data={data.nav} />
+  <main class="thanks">
+    <div class="container thanks__inner">
+      <p class="eyebrow">Message Sent</p>
+      <h1 class="thanks__title">Thank You.</h1>
+      <div class="divider-gold"></div>
+      <p class="thanks__text">
+        Your request has been sent to Gillian. She personally responds to every
+        inquiry and will be in touch soon.
+      </p>
+      <a class="btn" href="/">Back to Home</a>
+    </div>
+  </main>
+  <Footer data={data.footer} nav={data.nav} contact={data.contact} social={data.social} />
+</Layout>

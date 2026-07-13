@@ -218,3 +218,32 @@ collections:
               - { label: "Brand Line 2 (for accessibility)", name: "brandLine2", widget: "string" }
               - { label: "Tagline", name: "tagline", widget: "text" }
               - { label: "Copyright", name: "copyright", widget: "string" }
+
+  # ============================================================
+  # GALLERY — photos & videos of Gillian's work (add as many as you like)
+  # ============================================================
+  - name: "gallery"
+    label: "Gallery"
+    label_singular: "Gallery Item"
+    description: "Photos and videos of your work. Upload a file and add a caption."
+    folder: "src/content/gallery"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "caption"
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{caption}}"
+    sortable_fields: ["date"]
+    fields:
+      - label: "Image or Video"
+        name: "media"
+        widget: "file"
+        hint: "Photo (JPG, PNG, WEBP, AVIF, GIF) or video (MP4, WEBM, MOV)."
+      - { label: "Caption", name: "caption", widget: "string", required: false }
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        required: false
+        default: ""
+        hint: "Controls order — newest shows first. Leave as-is for now."

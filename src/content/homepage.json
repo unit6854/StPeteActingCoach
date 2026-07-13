@@ -9,14 +9,15 @@
     "brandLine1": "ACTING COACH",
     "brandLine2": "GILLIAN ARNOLD ATLAS",
     "links": [
-      { "label": "Home", "href": "#home" },
-      { "label": "About", "href": "#about" },
-      { "label": "Services", "href": "#services" },
-      { "label": "Testimonials", "href": "#testimonials" },
-      { "label": "Contact", "href": "#contact" }
+      { "label": "Home", "href": "/#home" },
+      { "label": "About", "href": "/#about" },
+      { "label": "Services", "href": "/#services" },
+      { "label": "Gallery", "href": "/gallery" },
+      { "label": "Testimonials", "href": "/#testimonials" },
+      { "label": "Contact", "href": "/#contact" }
     ],
     "ctaLabel": "Schedule a Session",
-    "ctaHref": "#contact"
+    "ctaHref": "/#contact"
   },
   "hero": {
     "eyebrow": "On-Camera Acting Coach",
@@ -27,9 +28,9 @@
     "subtitleLine1": "Transform your performance.",
     "subtitleLine2": "Elevate your career.",
     "primaryCtaLabel": "Work With Gillian",
-    "primaryCtaHref": "#services",
+    "primaryCtaHref": "/#services",
     "videoCtaLabel": "Watch Gillian's Approach",
-    "videoCtaHref": "#about",
+    "videoCtaHref": "/#about",
     "heroImage": "/images/hero-bg.jpg"
   },
   "location": {
@@ -79,7 +80,7 @@
     "subLine3": "Create the career",
     "subLine4": "you're meant to have.",
     "ctaLabel": "Let's Work Together",
-    "ctaHref": "#contact",
+    "ctaHref": "/#contact",
     "portraitImage": "/images/about-gillian.avif",
     "quote": "My mission is simple: to help you discover your truth and share it with the world.",
     "quoteAuthor": "Gillian Arnold Atlas",
@@ -115,21 +116,21 @@
         "title": "Private Coaching",
         "text": "Preparing for an audition or rehearsing for film or TV? Gillian will arrange individual sessions in our studio or at your home.",
         "ctaLabel": "Book a Session",
-        "ctaHref": "#contact"
+        "ctaHref": "/#contact"
       },
       {
         "icon": "clapperboard",
         "title": "Taking Direction Workshop",
         "text": "A 4-week intensive workshop designed to get you out of your comfort zone and into the moment — acting from a director's perspective.",
         "ctaLabel": "Register Now",
-        "ctaHref": "#contact"
+        "ctaHref": "/#contact"
       },
       {
         "icon": "camera",
         "title": "Online Audition Feedback",
         "text": "Work with Gillian on perfecting your audition tape. Submit online and use video conferencing to refine it until it's ready to send to the casting agent.",
         "ctaLabel": "Get Feedback",
-        "ctaHref": "#contact"
+        "ctaHref": "/#contact"
       }
     ]
   },
@@ -148,7 +149,7 @@
     "text": "Reach out to schedule a session, register for a workshop, or ask a question. Gillian personally responds to every inquiry.",
     "email": "gillianatlas8@gmail.com",
     "phone": "310.880.8335",
-    "ctaLabel": "Email Gillian",
+    "ctaLabel": "Request a Session",
     "location": "St. Petersburg, Florida"
   },
   "social": [

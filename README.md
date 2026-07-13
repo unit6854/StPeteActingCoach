@@ -65,6 +65,27 @@ Do this once so the client can log in at **/admin** and edit content.
 5. **Invite the client:** Identity → *Invite users* → enter their email. They accept
    the email, set a password, and can then log in.
 6. **Log in to the CMS:** visit `https://stpeteactingcoach.com/admin` and sign in.
+7. **Contact form email (important):** Site → **Forms** → after the first deploy the
+   `session-request` form appears → **Form notifications** → *Add notification* →
+   *Email notification* → send to **gillianatlas8@gmail.com**. Now every "Request a
+   Session" submission is emailed to Gillian (no mail app opens for the visitor).
+
+## The Gallery
+
+- The **Gallery** page (`/gallery`) is managed in the CMS under **Gallery**. Each item
+  is one photo **or** video plus an optional caption.
+- Supports images (JPG, PNG, WEBP, AVIF, GIF) and video (MP4, WEBM, MOV) — Gillian just
+  uploads a file. Newest items (by Date) show first; click any item to enlarge.
+- Clicking **Gallery** in the nav plays a theatrical curtain transition.
+- **Note on video size:** uploads are stored in the Git repo via Git Gateway, so keep
+  clips reasonably small (short highlights). For long/large videos, host on
+  YouTube/Vimeo and we can add embed support.
+
+## What Gillian can edit
+
+Everything text and every image on the site **and** the gallery — through `/admin`.
+(The cinematic background photos are intentionally left fixed to preserve the design;
+everything else — logos, portrait, testimonials, gallery, copy — is editable.)
 
 ### What happens when the client edits content
 

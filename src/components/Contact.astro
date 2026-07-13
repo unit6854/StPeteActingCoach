@@ -10,11 +10,59 @@ const { data, social } = Astro.props;
     <h2 class="contact__title reveal" data-delay="1">{data.heading}</h2>
     <p class="contact__text reveal" data-delay="1">{data.text}</p>
 
-    <div class="contact__actions reveal" data-delay="2">
-      <a class="btn" href={`mailto:${data.email}`}>{data.ctaLabel}</a>
-      <a class="contact__chip" href={`mailto:${data.email}`}>
+    <form
+      class="contact__form reveal"
+      data-delay="2"
+      name="session-request"
+      method="POST"
+      action="/thanks/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="session-request" />
+      <p class="contact__hp">
+        <label>Leave this empty: <input name="bot-field" /></label>
+      </p>
+
+      <div class="contact__row">
+        <label class="field">
+          <span>Name</span>
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+      </div>
+
+      <div class="contact__row">
+        <label class="field">
+          <span>Phone <em>(optional)</em></span>
+          <input type="tel" name="phone" autocomplete="tel" />
+        </label>
+        <label class="field">
+          <span>I'm interested in</span>
+          <select name="interest">
+            <option>Private Coaching</option>
+            <option>Taking Direction Workshop</option>
+            <option>Online Audition Feedback</option>
+            <option>Something else</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Message</span>
+        <textarea name="message" rows="4" placeholder="Tell Gillian a little about your goals…"></textarea>
+      </label>
+
+      <button type="submit" class="btn contact__submit">{data.ctaLabel}</button>
+    </form>
+
+    <div class="contact__meta reveal" data-delay="2">
+      <span class="contact__chip">
         <Icon name="mail" class="icon" /> {data.email}
-      </a>
+      </span>
       <a class="contact__chip" href={`tel:${data.phone.replace(/[^0-9+]/g, "")}`}>
         <Icon name="phone" class="icon" /> {data.phone}
       </a>

@@ -1,0 +1,155 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import data from "../content/homepage.json";
+
+// Load every gallery entry authored through Decap CMS
+const modules = import.meta.glob("../content/gallery/*.json", { eager: true });
+let items = Object.values(modules).map((m: any) => m.default ?? m);
+items = items
+  .filter((it: any) => it && it.media)
+  .sort(
+    (a: any, b: any) =>
+      new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+  );
+
+const isVideo = (src: string) =>
+  /\.(mp4|webm|ogg|ogv|mov|m4v|mkv)$/i.test(src || "");
+---
+<Layout
+  title="Gallery | St. Pete Acting Coach — Gillian Arnold Atlas"
+  description="A gallery of Gillian Arnold Atlas's on-camera coaching, directing, and student work in St. Petersburg, Florida."
+>
+  <Nav data={data.nav} />
+
+  <main class="gallery">
+    <header class="container gallery__head">
+      <p class="eyebrow reveal">Portfolio</p>
+      <h1 class="gallery__title reveal" data-delay="1">The Gallery</h1>
+      <div class="divider-gold reveal" data-delay="1"></div>
+      <p class="gallery__intro reveal" data-delay="2">
+        A look at the work — on set, in the studio, and behind the camera.
+      </p>
+    </header>
+
+    <div class="container">
+      {items.length === 0 ? (
+        <p class="gallery__empty">New work is being added soon.</p>
+      ) : (
+        <div class="gallery__grid">
+          {items.map((item: any, i: number) => (
+            <figure
+              class="gallery__item reveal"
+              data-delay={String((i % 4) + 1)}
+              data-media={item.media}
+              data-video={isVideo(item.media) ? "1" : "0"}
+              data-caption={item.caption ?? ""}
+            >
+              {isVideo(item.media) ? (
+                <div class="gallery__videowrap">
+                  <video
+                    class="gallery__media"
+                    src={item.media}
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                  ></video>
+                  <span class="gallery__play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+                  </span>
+                </div>
+              ) : (
+                <img
+                  class="gallery__media"
+                  src={item.media}
+                  alt={item.caption || "Gallery image"}
+                  loading="lazy"
+                />
+              )}
+              {item.caption && (
+                <figcaption class="gallery__caption">{item.caption}</figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer data={data.footer} nav={data.nav} contact={data.contact} social={data.social} />
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <div class="lightbox__inner" id="lightboxInner"></div>
+    <p class="lightbox__caption" id="lightboxCaption"></p>
+  </div>
+
+  <script>
+    const lb = document.getElementById("lightbox");
+    const inner = document.getElementById("lightboxInner");
+    const cap = document.getElementById("lightboxCaption");
+    const closeBtn = document.getElementById("lightboxClose");
+
+    function openItem(fig: HTMLElement) {
+      if (!lb || !inner || !cap) return;
+      const media = fig.getAttribute("data-media") || "";
+      const isVid = fig.getAttribute("data-video") === "1";
+      const caption = fig.getAttribute("data-caption") || "";
+      inner.innerHTML = "";
+      if (isVid) {
+        const v = document.createElement("video");
+        v.src = media;
+        v.controls = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        v.className = "lightbox__media";
+        inner.appendChild(v);
+      } else {
+        const img = document.createElement("img");
+        img.src = media;
+        img.alt = caption;
+        img.className = "lightbox__media";
+        inner.appendChild(img);
+      }
+      cap.textContent = caption;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      if (!lb || !inner) return;
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      inner.innerHTML = "";
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll<HTMLElement>(".gallery__item").forEach((fig) => {
+      fig.addEventListener("click", () => openItem(fig));
+    });
+    closeBtn?.addEventListener("click", close);
+    lb?.addEventListener("click", (e) => {
+      if (e.target === lb) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+
+    // Autoplay muted video previews when they scroll into view
+    const vids = document.querySelectorAll<HTMLVideoElement>(".gallery__videowrap video");
+    if (vids.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          const v = en.target as HTMLVideoElement;
+          if (en.isIntersecting) v.play().catch(() => {});
+          else v.pause();
+        });
+      }, { threshold: 0.4 });
+      vids.forEach((v) => io.observe(v));
+    }
+  </script>
+</Layout>
