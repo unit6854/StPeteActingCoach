@@ -90,6 +90,11 @@ collections:
             name: "valueProps"
             widget: "object"
             fields:
+              - label: "Background Image (stage)"
+                name: "backgroundImage"
+                widget: "image"
+                required: false
+                hint: "Leave empty to use the built-in spotlight background."
               - { label: "Heading Line 1", name: "headingLine1", widget: "string" }
               - { label: "Heading Line 2 (gold)", name: "headingLine2Gold", widget: "string" }
               - label: "Items"
@@ -108,6 +113,11 @@ collections:
             name: "about"
             widget: "object"
             fields:
+              - label: "Background Image (water)"
+                name: "backgroundImage"
+                widget: "image"
+                required: false
+                hint: "Leave empty to use the built-in gradient background."
               - { label: "Heading Line 1", name: "headingLine1", widget: "string" }
               - { label: "Heading Line 2", name: "headingLine2", widget: "string" }
               - { label: "Heading Line 3 (gold)", name: "headingLine3Gold", widget: "string" }

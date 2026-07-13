@@ -1,9 +1,12 @@
 ---
 interface Props { data: any; }
 const { data } = Astro.props;
+const hasBg = data.backgroundImage && data.backgroundImage.trim() !== "";
 ---
 <section class="section about" id="about">
-  <div class="about__waves" aria-hidden="true"></div>
+  {hasBg
+    ? <div class="about__bg" style={`background-image:url('${data.backgroundImage}')`} aria-hidden="true"></div>
+    : <div class="about__waves" aria-hidden="true"></div>}
   <div class="container about__grid">
     <div class="about__left reveal">
       <h2 class="about__head">

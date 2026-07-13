@@ -31,7 +31,7 @@
     "primaryCtaHref": "#services",
     "videoCtaLabel": "Watch Gillian's Approach",
     "videoCtaHref": "#about",
-    "heroImage": ""
+    "heroImage": "/images/hero-bg.jpg"
   },
   "location": {
     "eyebrow": "Based In",
@@ -40,10 +40,11 @@
     "paragraph2": "World-class training. Local heart. Industry connections that open doors. Real results for actors who are ready.",
     "signature": "Gillian Arnold Atlas",
     "tags": "On-Camera | TV & Film | Auditions | Self-Tape | Scene Study",
-    "leftImage": "/images/class-01.avif",
-    "rightImage": "/images/about-gillian.avif"
+    "leftImage": "/images/bridge-bg.jpg",
+    "rightImage": "/images/camera-bg.jpg"
   },
   "valueProps": {
+    "backgroundImage": "/images/stage-bg.jpg",
     "headingLine1": "You Bring The Drive.",
     "headingLine2Gold": "I'll Bring The Direction.",
     "items": [
@@ -70,6 +71,7 @@
     ]
   },
   "about": {
+    "backgroundImage": "/images/water-bg.jpg",
     "headingLine1": "This Is More Than",
     "headingLine2": "Acting. This Is",
     "headingLine3Gold": "Your Moment.",

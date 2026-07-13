@@ -407,7 +407,9 @@ button { font-family: inherit; cursor: pointer; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(3, 4, 8, 0.95) 0%, rgba(3, 4, 8, 0.5) 40%, rgba(3, 4, 8, 0.2) 100%);
+  background:
+    linear-gradient(90deg, rgba(4, 5, 10, 0.9) 0%, rgba(4, 5, 10, 0.55) 38%, rgba(4, 5, 10, 0.12) 72%, rgba(4, 5, 10, 0.05) 100%),
+    linear-gradient(180deg, rgba(4, 5, 10, 0.45) 0%, transparent 22%, transparent 70%, rgba(4, 5, 10, 0.55) 100%);
 }
 /* faint sun disc */
 .hero__sun {
@@ -533,6 +535,22 @@ button { font-family: inherit; cursor: pointer; }
   background:
     linear-gradient(180deg, #070a12 0%, #0b0d14 100%);
 }
+.vp__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center top;
+}
+.vp__bg::after {
+  /* darken lower/center so icons + text stay legible over the stage */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(90% 70% at 50% 92%, rgba(5, 7, 12, 0.85), transparent 60%),
+    linear-gradient(180deg, rgba(5, 7, 12, 0.15) 0%, rgba(5, 7, 12, 0.35) 45%, rgba(5, 7, 12, 0.72) 100%);
+}
 .vp__curtain {
   position: absolute;
   inset: 0;
@@ -654,6 +672,20 @@ button { font-family: inherit; cursor: pointer; }
   background:
     repeating-radial-gradient(circle at 20% 120%, rgba(201,161,92,0.05) 0 40px, transparent 40px 90px),
     repeating-radial-gradient(circle at 80% -20%, rgba(120,170,210,0.05) 0 50px, transparent 50px 110px);
+}
+.about__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+}
+.about__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6, 12, 20, 0.82) 0%, rgba(6, 12, 20, 0.62) 50%, rgba(6, 12, 20, 0.82) 100%);
 }
 .about__grid {
   position: relative;
