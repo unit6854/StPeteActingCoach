@@ -1,0 +1,31 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<section class="section vp" id="why">
+  <div class="vp__curtain" aria-hidden="true"></div>
+  <div class="vp__lights" aria-hidden="true">
+    <span class="vp__beam b1"></span>
+    <span class="vp__beam b2"></span>
+    <span class="vp__beam b3"></span>
+    <span class="vp__beam b4"></span>
+  </div>
+
+  <div class="container">
+    <h2 class="vp__head reveal">
+      <span>{data.headingLine1}</span>
+      <span class="gold">{data.headingLine2Gold}</span>
+    </h2>
+
+    <div class="vp__grid">
+      {data.items.map((item: any, i: number) => (
+        <div class="vp__item reveal" data-delay={String((i % 4) + 1)}>
+          <Icon name={item.icon} class="vp__icon" />
+          <h3 class="vp__title">{item.title}</h3>
+          <p class="vp__text">{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; }
+const { data } = Astro.props;
+const hasPhoto = data.heroImage && data.heroImage.trim() !== "";
+---
+<section class="hero grain vignette" id="home">
+  <div class="hero__bg"></div>
+  {hasPhoto && (
+    <div class="hero__photo" style={`background-image:url('${data.heroImage}')`}></div>
+  )}
+  <div class="hero__sun" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <p class="eyebrow hero__eyebrow reveal">{data.eyebrow}</p>
+    <h1 class="hero__title">
+      <span class="reveal" data-delay="1">{data.titleLine1}</span>
+      <span class="reveal gold" data-delay="1">{data.titleLine2Gold}</span>
+      <span class="reveal" data-delay="2">{data.titleLine3}</span>
+      <span class="reveal" data-delay="2">{data.titleLine4}</span>
+    </h1>
+    <p class="hero__subtitle reveal" data-delay="3">
+      {data.subtitleLine1}<br />{data.subtitleLine2}
+    </p>
+    <div class="hero__cta reveal" data-delay="3">
+      <a class="btn" href={data.primaryCtaHref}>{data.primaryCtaLabel}</a>
+      <a class="play-link" href={data.videoCtaHref}>
+        <span class="play-link__ring"><Icon name="play" class="icon" /></span>
+        {data.videoCtaLabel}
+      </a>
+    </div>
+  </div>
+</section>

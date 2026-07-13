@@ -1,0 +1,15 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<section class="strip">
+  <div class="container strip__inner">
+    {data.items.map((s: any) => (
+      <div class="strip__item">
+        <Icon name={s.icon} class="icon" />
+        <span>{s.label}</span>
+      </div>
+    ))}
+  </div>
+</section>

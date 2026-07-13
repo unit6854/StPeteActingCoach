@@ -1,0 +1,44 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; nav: any; contact: any; social: any; }
+const { data, nav, contact, social } = Astro.props;
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <a class="footer__brand" href="#home">
+          <img class="brand__tile" src={data.logoTile} alt="" width="52" height="52" />
+          <span class="brand__text">
+            <span class="brand__l1">{data.brandLine1}</span>
+            <span class="brand__l2">{data.brandLine2}</span>
+          </span>
+        </a>
+        <p class="footer__tagline">{data.tagline}</p>
+        <div class="contact__socials" style="justify-content:flex-start;margin-top:1.4rem;">
+          <a class="social-btn" href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <Icon name="facebook" class="icon" />
+          </a>
+          <a class="social-btn" href={social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Icon name="linkedin" class="icon" />
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Explore</h4>
+          {nav.links.map((l: any) => (<a href={l.href}>{l.label}</a>))}
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          <a href={`tel:${contact.phone.replace(/[^0-9+]/g, "")}`}>{contact.phone}</a>
+          <p>{contact.location}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">{data.copyright}</div>
+  </div>
+</footer>

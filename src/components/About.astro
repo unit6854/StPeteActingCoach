@@ -1,0 +1,37 @@
+---
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<section class="section about" id="about">
+  <div class="about__waves" aria-hidden="true"></div>
+  <div class="container about__grid">
+    <div class="about__left reveal">
+      <h2 class="about__head">
+        <span>{data.headingLine1}</span>
+        <span>{data.headingLine2}</span>
+        <span class="gold">{data.headingLine3Gold}</span>
+      </h2>
+      <p class="about__sub">
+        <span>{data.subLine1}</span>
+        <span>{data.subLine2}</span>
+        <span>{data.subLine3}</span>
+        <span>{data.subLine4}</span>
+      </p>
+      <a class="btn about__cta" href={data.ctaHref}>{data.ctaLabel}</a>
+    </div>
+
+    <figure class="about__portrait reveal" data-delay="1">
+      <img src={data.portraitImage} alt="Gillian Arnold Atlas" width="360" height="444" loading="lazy" />
+    </figure>
+
+    <div class="about__right reveal" data-delay="2">
+      <div class="about__quotemark" aria-hidden="true">&ldquo;</div>
+      <p class="about__quote">{data.quote}</p>
+      <p class="about__author">&mdash; {data.quoteAuthor}</p>
+    </div>
+  </div>
+
+  <div class="container about__bio-wrap reveal">
+    <p class="about__bio">{data.bio}</p>
+  </div>
+</section>

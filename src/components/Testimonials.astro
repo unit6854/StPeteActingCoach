@@ -1,0 +1,29 @@
+---
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<section class="section tst" id="testimonials">
+  <div class="container">
+    <div class="tst__head reveal">
+      <p class="eyebrow">{data.eyebrow}</p>
+      <h2 class="tst__title">{data.heading}</h2>
+      <div class="divider-gold"></div>
+    </div>
+
+    <div class="tst__grid">
+      {data.items.map((t: any, i: number) => (
+        <figure class="tst__card reveal" data-delay={String((i % 3) + 1)}>
+          <div class="tst__mark" aria-hidden="true">&ldquo;</div>
+          <blockquote class="tst__quote">{t.quote}</blockquote>
+          <figcaption class="tst__person">
+            <img class="tst__avatar" src={t.image} alt={t.name} width="56" height="56" loading="lazy" />
+            <span>
+              <span class="tst__name">{t.name}</span>
+              <span class="tst__role">Actor</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

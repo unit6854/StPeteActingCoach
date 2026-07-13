@@ -1,0 +1,37 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#home" aria-label={`${data.brandLine1} — ${data.brandLine2}`}>
+      <img class="brand__tile" src={data.logoTile} alt="" width="42" height="42" />
+      <span class="brand__text">
+        <span class="brand__l1">{data.brandLine1}</span>
+        <span class="brand__l2">{data.brandLine2}</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav__links">
+        {data.links.map((l: any) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="nav__cta" href={data.ctaHref}>{data.ctaLabel}</a>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-controls="navMobile">
+      <Icon name="menu" class="icon" />
+    </button>
+  </div>
+
+  <div class="nav__mobile" id="navMobile">
+    {data.links.map((l: any) => (
+      <a href={l.href}>{l.label}</a>
+    ))}
+    <a class="btn" href={data.ctaHref}>{data.ctaLabel}</a>
+  </div>
+</header>

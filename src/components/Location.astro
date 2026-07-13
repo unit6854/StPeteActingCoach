@@ -1,0 +1,21 @@
+---
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<section class="loc" id="location">
+  <div class="loc__grid">
+    <div class="loc__aside loc__aside--l" style={`background-image:url('${data.leftImage}')`}></div>
+
+    <div class="loc__content container">
+      <p class="eyebrow reveal">{data.eyebrow}</p>
+      <h2 class="loc__title reveal" data-delay="1">{data.title}</h2>
+      <div class="divider-gold reveal" data-delay="1"></div>
+      <p class="loc__p reveal" data-delay="2">{data.paragraph1}</p>
+      <p class="loc__p reveal" data-delay="2">{data.paragraph2}</p>
+      <p class="loc__sign reveal" data-delay="3">{data.signature}</p>
+      <p class="loc__tags reveal" data-delay="3">{data.tags}</p>
+    </div>
+
+    <div class="loc__aside loc__aside--r" style={`background-image:url('${data.rightImage}')`}></div>
+  </div>
+</section>

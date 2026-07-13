@@ -1,0 +1,31 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; social: any; }
+const { data, social } = Astro.props;
+---
+<section class="section contact" id="contact">
+  <div class="container">
+    <p class="eyebrow reveal">{data.eyebrow}</p>
+    <h2 class="contact__title reveal" data-delay="1">{data.heading}</h2>
+    <p class="contact__text reveal" data-delay="1">{data.text}</p>
+
+    <div class="contact__actions reveal" data-delay="2">
+      <a class="btn" href={`mailto:${data.email}`}>{data.ctaLabel}</a>
+      <a class="contact__chip" href={`mailto:${data.email}`}>
+        <Icon name="mail" class="icon" /> {data.email}
+      </a>
+      <a class="contact__chip" href={`tel:${data.phone.replace(/[^0-9+]/g, "")}`}>
+        <Icon name="phone" class="icon" /> {data.phone}
+      </a>
+    </div>
+
+    <div class="contact__socials reveal" data-delay="2">
+      <a class="social-btn" href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <Icon name="facebook" class="icon" />
+      </a>
+      <a class="social-btn" href={social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <Icon name="linkedin" class="icon" />
+      </a>
+    </div>
+  </div>
+</section>

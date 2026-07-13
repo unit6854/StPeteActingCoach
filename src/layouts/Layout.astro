@@ -1,0 +1,135 @@
+---
+import "../styles/global.css";
+import data from "../content/homepage.json";
+
+const { seo } = data;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" content="#07080c" />
+  </head>
+  <body>
+    <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+    <slot />
+
+    <!-- Smooth scroll (Lenis), spotlight cursor, scroll reveal -->
+    <script>
+      import Lenis from "lenis";
+
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      /* ---- Smooth momentum scrolling ------------------------------------ */
+      if (!reduce) {
+        const lenis = new Lenis({
+          duration: 1.1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Anchor links -> smooth scroll via Lenis
+        document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(
+          (a) => {
+            a.addEventListener("click", (e) => {
+              const id = a.getAttribute("href");
+              if (!id || id === "#") return;
+              const el = document.querySelector(id);
+              if (el) {
+                e.preventDefault();
+                lenis.scrollTo(el as HTMLElement, { offset: -70 });
+              }
+            });
+          }
+        );
+      }
+
+      /* ---- Spotlight cursor --------------------------------------------- */
+      const spot = document.getElementById("spotlight");
+      if (spot && !reduce && window.matchMedia("(pointer: fine)").matches) {
+        let raf2 = 0;
+        window.addEventListener("mousemove", (e) => {
+          if (raf2) return;
+          raf2 = requestAnimationFrame(() => {
+            spot.style.setProperty("--mx", e.clientX + "px");
+            spot.style.setProperty("--my", e.clientY + "px");
+            spot.classList.add("on");
+            raf2 = 0;
+          });
+        });
+        window.addEventListener("mouseleave", () => spot.classList.remove("on"));
+      }
+
+      /* ---- Scroll reveal ------------------------------------------------- */
+      const items = document.querySelectorAll(".reveal");
+      if (reduce) {
+        items.forEach((el) => el.classList.add("in-view"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                en.target.classList.add("in-view");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+        );
+        items.forEach((el) => io.observe(el));
+      }
+
+      /* ---- Nav solidify on scroll --------------------------------------- */
+      const nav = document.getElementById("nav");
+      if (nav) {
+        const onScroll = () =>
+          nav.classList.toggle("scrolled", window.scrollY > 40);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+
+      /* ---- Mobile menu --------------------------------------------------- */
+      const toggle = document.getElementById("navToggle");
+      const menu = document.getElementById("navMobile");
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => menu.classList.toggle("open"));
+        menu.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => menu.classList.remove("open"))
+        );
+      }
+    </script>
+  </body>
+</html>

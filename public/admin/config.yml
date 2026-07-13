@@ -1,0 +1,205 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Uploaded media is written here and referenced from the site at /images/...
+media_folder: "public/images"
+public_folder: "/images"
+
+# Nicer editor UX: show a live-ish preview path and keep entries tidy.
+site_url: https://stpeteactingcoach.com
+display_url: https://stpeteactingcoach.com
+logo_url: /images/nav-tile.png
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "homepage"
+        label: "Homepage"
+        file: "src/content/homepage.json"
+        # Fields below map 1:1 to src/content/homepage.json
+        fields:
+          # ---------- SEO ----------
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Browser / SEO Title", name: "title", widget: "string" }
+              - { label: "Meta Description", name: "description", widget: "text" }
+              - { label: "Social Share Image", name: "ogImage", widget: "image", required: false }
+
+          # ---------- NAVIGATION ----------
+          - label: "Navigation Bar"
+            name: "nav"
+            widget: "object"
+            fields:
+              - { label: "Logo Tile", name: "logoTile", widget: "image" }
+              - { label: "Brand Line 1", name: "brandLine1", widget: "string" }
+              - { label: "Brand Line 2", name: "brandLine2", widget: "string" }
+              - label: "Menu Links"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Link (URL or #section)", name: "href", widget: "string" }
+              - { label: "Button Label", name: "ctaLabel", widget: "string" }
+              - { label: "Button Link", name: "ctaHref", widget: "string" }
+
+          # ---------- HERO ----------
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title Line 1", name: "titleLine1", widget: "string" }
+              - { label: "Title Line 2 (gold)", name: "titleLine2Gold", widget: "string" }
+              - { label: "Title Line 3", name: "titleLine3", widget: "string" }
+              - { label: "Title Line 4", name: "titleLine4", widget: "string" }
+              - { label: "Subtitle Line 1", name: "subtitleLine1", widget: "string" }
+              - { label: "Subtitle Line 2", name: "subtitleLine2", widget: "string" }
+              - { label: "Primary Button Label", name: "primaryCtaLabel", widget: "string" }
+              - { label: "Primary Button Link", name: "primaryCtaHref", widget: "string" }
+              - { label: "Video Link Label", name: "videoCtaLabel", widget: "string" }
+              - { label: "Video Link URL", name: "videoCtaHref", widget: "string" }
+              - label: "Background Photo (optional)"
+                name: "heroImage"
+                widget: "image"
+                required: false
+                hint: "Leave empty to use the built-in cinematic background."
+
+          # ---------- LOCATION ----------
+          - label: "Location Block"
+            name: "location"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+              - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+              - { label: "Signature (script)", name: "signature", widget: "string" }
+              - { label: "Tags Line", name: "tags", widget: "string" }
+              - { label: "Left Image", name: "leftImage", widget: "image" }
+              - { label: "Right Image", name: "rightImage", widget: "image" }
+
+          # ---------- VALUE PROPS ----------
+          - label: "Value Propositions"
+            name: "valueProps"
+            widget: "object"
+            fields:
+              - { label: "Heading Line 1", name: "headingLine1", widget: "string" }
+              - { label: "Heading Line 2 (gold)", name: "headingLine2Gold", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["clapperboard", "masks", "camera", "star", "chair", "book", "chart"]
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+
+          # ---------- ABOUT ----------
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Heading Line 1", name: "headingLine1", widget: "string" }
+              - { label: "Heading Line 2", name: "headingLine2", widget: "string" }
+              - { label: "Heading Line 3 (gold)", name: "headingLine3Gold", widget: "string" }
+              - { label: "Sub Line 1", name: "subLine1", widget: "string" }
+              - { label: "Sub Line 2", name: "subLine2", widget: "string" }
+              - { label: "Sub Line 3", name: "subLine3", widget: "string" }
+              - { label: "Sub Line 4", name: "subLine4", widget: "string" }
+              - { label: "Button Label", name: "ctaLabel", widget: "string" }
+              - { label: "Button Link", name: "ctaHref", widget: "string" }
+              - { label: "Portrait Image", name: "portraitImage", widget: "image" }
+              - { label: "Pull Quote", name: "quote", widget: "text" }
+              - { label: "Quote Author", name: "quoteAuthor", widget: "string" }
+              - { label: "Biography", name: "bio", widget: "text" }
+
+          # ---------- TESTIMONIALS ----------
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Headshot", name: "image", widget: "image" }
+                  - { label: "Quote", name: "quote", widget: "text" }
+
+          # ---------- SERVICES ----------
+          - label: "Services (Work With Gillian)"
+            name: "services"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["clapperboard", "masks", "camera", "star", "chair", "book", "chart"]
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+                  - { label: "Button Label", name: "ctaLabel", widget: "string" }
+                  - { label: "Button Link", name: "ctaHref", widget: "string" }
+
+          # ---------- SERVICE STRIP ----------
+          - label: "Footer Service Strip"
+            name: "serviceStrip"
+            widget: "object"
+            fields:
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["clapperboard", "masks", "camera", "star", "chair", "book", "chart"]
+                  - { label: "Label", name: "label", widget: "string" }
+
+          # ---------- CONTACT ----------
+          - label: "Contact Section"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Button Label", name: "ctaLabel", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+
+          # ---------- SOCIAL ----------
+          - label: "Social Links"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Facebook URL", name: "facebook", widget: "string" }
+              - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
+
+          # ---------- FOOTER ----------
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Logo Tile", name: "logoTile", widget: "image" }
+              - { label: "Brand Line 1", name: "brandLine1", widget: "string" }
+              - { label: "Brand Line 2", name: "brandLine2", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "text" }
+              - { label: "Copyright", name: "copyright", widget: "string" }

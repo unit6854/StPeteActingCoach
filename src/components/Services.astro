@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro";
+interface Props { data: any; }
+const { data } = Astro.props;
+---
+<section class="section svc" id="services">
+  <div class="container">
+    <div class="svc__head reveal">
+      <p class="eyebrow">{data.eyebrow}</p>
+      <h2 class="svc__title">{data.heading}</h2>
+      <div class="divider-gold"></div>
+    </div>
+
+    <div class="svc__grid">
+      {data.items.map((s: any, i: number) => (
+        <article class="svc__card reveal" data-delay={String((i % 3) + 1)}>
+          <Icon name={s.icon} class="svc__icon" />
+          <h3 class="svc__name">{s.title}</h3>
+          <p class="svc__text">{s.text}</p>
+          <a class="svc__link" href={s.ctaHref}>
+            {s.ctaLabel} <Icon name="arrow" class="icon" />
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

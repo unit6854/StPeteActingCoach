@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import data from "../content/homepage.json";
+
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Location from "../components/Location.astro";
+import ValueProps from "../components/ValueProps.astro";
+import About from "../components/About.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Services from "../components/Services.astro";
+import Contact from "../components/Contact.astro";
+import ServiceStrip from "../components/ServiceStrip.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <Nav data={data.nav} />
+  <main>
+    <Hero data={data.hero} />
+    <Location data={data.location} />
+    <ValueProps data={data.valueProps} />
+    <About data={data.about} />
+    <Testimonials data={data.testimonials} />
+    <Services data={data.services} />
+    <Contact data={data.contact} social={data.social} />
+  </main>
+  <ServiceStrip data={data.serviceStrip} />
+  <Footer data={data.footer} nav={data.nav} contact={data.contact} social={data.social} />
+</Layout>
