@@ -6,11 +6,7 @@ const { data } = Astro.props;
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a class="brand" href="#home" aria-label={`${data.brandLine1} — ${data.brandLine2}`}>
-      <img class="brand__tile" src={data.logoTile} alt="" width="42" height="42" />
-      <span class="brand__text">
-        <span class="brand__l1">{data.brandLine1}</span>
-        <span class="brand__l2">{data.brandLine2}</span>
-      </span>
+      <img class="brand__logo" src={data.logo} alt={`${data.brandLine1} — ${data.brandLine2}`} height="50" />
     </a>
 
     <nav aria-label="Primary">

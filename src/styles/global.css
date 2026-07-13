@@ -27,7 +27,7 @@
   /* Layout */
   --maxw: 1200px;
   --pad: clamp(1.25rem, 4vw, 4rem);
-  --nav-h: 84px;
+  --nav-h: 116px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -257,6 +257,14 @@ button { font-family: inherit; cursor: pointer; }
   gap: clamp(1.25rem, 3vw, 2.75rem);
 }
 .brand { display: flex; align-items: center; gap: 0.7rem; }
+.brand__logo {
+  height: 96px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 600px) {
+  .brand__logo { height: 62px; }
+}
 .brand__tile {
   width: 42px;
   height: 42px;
@@ -384,7 +392,7 @@ button { font-family: inherit; cursor: pointer; }
    ========================================================================== */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: clamp(620px, 52vw, 800px);
   display: flex;
   align-items: center;
   padding-top: var(--nav-h);
@@ -404,22 +412,22 @@ button { font-family: inherit; cursor: pointer; }
   inset: 0;
   z-index: -1;
   background-size: cover;
-  background-position: center right;
+  background-position: center;
 }
-/* Left half fades from solid navy -> through the curtain -> into the photo (right half) */
+/* Translucent navy scrim behind the left-aligned text — lets the curtain show
+   through while keeping the copy legible; fades away to reveal the photo. */
 .hero__photo::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
     linear-gradient(90deg,
-      #0a0e18 0%,
-      #0a0e18 33%,
-      rgba(10, 14, 24, 0.92) 45%,
-      rgba(10, 14, 24, 0.55) 57%,
-      rgba(10, 14, 24, 0.16) 71%,
-      transparent 86%),
-    linear-gradient(180deg, rgba(8, 11, 20, 0.28) 0%, transparent 20%, transparent 66%, rgba(6, 8, 14, 0.60) 100%);
+      rgba(9, 13, 22, 0.80) 0%,
+      rgba(9, 13, 22, 0.62) 26%,
+      rgba(9, 13, 22, 0.34) 44%,
+      rgba(9, 13, 22, 0.10) 62%,
+      transparent 78%),
+    linear-gradient(180deg, rgba(8, 11, 20, 0.30) 0%, transparent 22%, transparent 64%, rgba(6, 8, 14, 0.55) 100%);
 }
 /* faint sun disc */
 .hero__sun {
@@ -493,24 +501,25 @@ button { font-family: inherit; cursor: pointer; }
   background-size: cover;
   background-position: center;
   min-height: 100%;
-  filter: brightness(0.62) saturate(0.9) contrast(1.04);
+  filter: brightness(0.9) saturate(1) contrast(1.02);
 }
-/* Fade the image into the center navy on the inner edge AND at top/bottom */
+/* Image fully visible on the outer edge, fading smoothly into the center navy;
+   only a soft top/bottom feather so the photo reads clearly (like the mock). */
 .loc__aside--l::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(10, 14, 24, 0) 0%, rgba(10, 14, 24, 0.32) 42%, rgba(10, 14, 24, 0.85) 76%, #0a0e18 97%),
-    linear-gradient(180deg, #0a0e18 0%, transparent 26%, transparent 74%, #0a0e18 100%);
+    linear-gradient(90deg, rgba(10, 14, 24, 0) 0%, rgba(10, 14, 24, 0) 34%, rgba(10, 14, 24, 0.45) 62%, rgba(10, 14, 24, 0.9) 84%, #0a0e18 99%),
+    linear-gradient(180deg, rgba(10, 14, 24, 0.6) 0%, transparent 16%, transparent 84%, rgba(10, 14, 24, 0.6) 100%);
 }
 .loc__aside--r::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(270deg, rgba(10, 14, 24, 0) 0%, rgba(10, 14, 24, 0.32) 42%, rgba(10, 14, 24, 0.85) 76%, #0a0e18 97%),
-    linear-gradient(180deg, #0a0e18 0%, transparent 26%, transparent 74%, #0a0e18 100%);
+    linear-gradient(270deg, rgba(10, 14, 24, 0) 0%, rgba(10, 14, 24, 0) 34%, rgba(10, 14, 24, 0.45) 62%, rgba(10, 14, 24, 0.9) 84%, #0a0e18 99%),
+    linear-gradient(180deg, rgba(10, 14, 24, 0.6) 0%, transparent 16%, transparent 84%, rgba(10, 14, 24, 0.6) 100%);
 }
 .loc__content {
   text-align: center;
@@ -1023,6 +1032,23 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
+   SECTION DIVIDER
+   ========================================================================== */
+.sdiv {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 161, 92, 0.55) 22%,
+    rgba(201, 161, 92, 0.7) 50%,
+    rgba(201, 161, 92, 0.55) 78%,
+    transparent 100%
+  );
+}
+
+/* ==========================================================================
    SPOTLIGHT CURSOR
    ========================================================================== */
 .spotlight {
@@ -1034,7 +1060,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: opacity 0.6s ease;
   mix-blend-mode: soft-light;
   background: radial-gradient(
-    240px circle at var(--mx, 50%) var(--my, 50%),
+    420px circle at var(--mx, 50%) var(--my, 50%),
     rgba(255, 226, 170, 0.5),
     rgba(255, 210, 140, 0.14) 40%,
     transparent 62%

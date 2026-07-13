@@ -37,9 +37,9 @@ collections:
             name: "nav"
             widget: "object"
             fields:
-              - { label: "Logo Tile", name: "logoTile", widget: "image" }
-              - { label: "Brand Line 1", name: "brandLine1", widget: "string" }
-              - { label: "Brand Line 2", name: "brandLine2", widget: "string" }
+              - { label: "Logo (navbar)", name: "logo", widget: "image" }
+              - { label: "Brand Line 1 (for accessibility)", name: "brandLine1", widget: "string" }
+              - { label: "Brand Line 2 (for accessibility)", name: "brandLine2", widget: "string" }
               - label: "Menu Links"
                 name: "links"
                 widget: "list"

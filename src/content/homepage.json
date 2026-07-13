@@ -5,7 +5,7 @@
     "ogImage": "/images/og-image.jpg"
   },
   "nav": {
-    "logoTile": "/images/nav-tile.png",
+    "logo": "/images/nav-logo.png",
     "brandLine1": "ACTING COACH",
     "brandLine2": "GILLIAN ARNOLD ATLAS",
     "links": [

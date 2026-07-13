@@ -12,6 +12,7 @@ import Services from "../components/Services.astro";
 import Contact from "../components/Contact.astro";
 import ServiceStrip from "../components/ServiceStrip.astro";
 import Footer from "../components/Footer.astro";
+import Divider from "../components/Divider.astro";
 ---
 
 <Layout>
@@ -19,10 +20,15 @@ import Footer from "../components/Footer.astro";
   <main>
     <Hero data={data.hero} />
     <Location data={data.location} />
+    <Divider />
     <ValueProps data={data.valueProps} />
+    <Divider />
     <About data={data.about} />
+    <Divider />
     <Testimonials data={data.testimonials} />
+    <Divider />
     <Services data={data.services} />
+    <Divider />
     <Contact data={data.contact} social={data.social} />
   </main>
   <ServiceStrip data={data.serviceStrip} />
