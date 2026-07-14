@@ -18,13 +18,20 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Baseline security headers.
+# Baseline security headers (applied to every response).
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Force HTTPS for a year (Netlify already serves HTTPS).
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    # This site uses none of these browser features — turn them off.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+    # Conservative CSP: clickjacking + base-tag + plugin + form-target protection,
+    # without restricting scripts/styles/fonts (so the site and /admin keep working).
+    Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'"
 
 # Pretty URLs keep a single trailing-slash form (avoids duplicate content).
 [build.processing]

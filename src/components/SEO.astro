@@ -124,6 +124,11 @@ const website = {
 
 const extra = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 const graph = { "@context": "https://schema.org", "@graph": [business, person, website, ...extra] };
+// Escape "<" (and U+2028/2029) so CMS text can never break out of the <script> tag.
+const jsonLd = JSON.stringify(graph)
+  .replace(/</g, "\\u003c")
+  .replace(/\u2028/g, "\\u2028")
+  .replace(/\u2029/g, "\\u2029");
 ---
 
 <meta charset="UTF-8" />
