@@ -119,6 +119,13 @@
         "ctaHref": "/#contact"
       },
       {
+        "icon": "monitor",
+        "title": "Online Coaching",
+        "text": "Can't make it to the studio? Work with Gillian one-on-one over video from anywhere — the same personalized coaching, wherever you are.",
+        "ctaLabel": "Start Online",
+        "ctaHref": "/#contact"
+      },
+      {
         "icon": "clapperboard",
         "title": "Taking Direction Workshop",
         "text": "A 4-week intensive workshop designed to get you out of your comfort zone and into the moment — acting from a director's perspective.",
