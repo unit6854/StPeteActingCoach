@@ -447,16 +447,17 @@ html {
   background-position: center;
   background-repeat: no-repeat;
 }
-/* Very light scrim only over the far-left curtain so the headline stays legible;
-   fades out quickly to leave the image essentially unchanged. */
+/* Black shading over the left curtain so the headline stays legible;
+   fades out before the sunset so the rest of the image is untouched. */
 .hero__photo::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,
-    rgba(6, 9, 16, 0.55) 0%,
-    rgba(6, 9, 16, 0.22) 22%,
-    transparent 40%);
+    rgba(0, 0, 0, 0.80) 0%,
+    rgba(0, 0, 0, 0.64) 22%,
+    rgba(0, 0, 0, 0.36) 38%,
+    transparent 55%);
 }
 /* faint sun disc */
 .hero__sun {
