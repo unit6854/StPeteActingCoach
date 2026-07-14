@@ -288,7 +288,8 @@ html {
   display: block;
 }
 @media (max-width: 600px) {
-  .brand__logo { height: 58px; }
+  :root { --nav-h: 84px; }
+  .brand__logo { height: 56px; }
 }
 .brand__tile {
   width: 42px;
@@ -372,11 +373,16 @@ html {
 }
 .nav__toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   color: var(--text);
   padding: 0.4rem;
+  transition: color 0.3s var(--ease);
 }
+.nav__toggle svg { width: 30px; height: 30px; }
+.nav__toggle:hover { color: var(--gold-bright); }
 
 /* Mobile menu */
 .nav__mobile {
@@ -1137,7 +1143,7 @@ span.contact__chip { cursor: default; }
 }
 .footer__intro { max-width: 460px; }
 .footer__brand { display: inline-flex; align-items: center; }
-.footer__logo { height: clamp(240px, 30vw, 416px); width: auto; max-width: 100%; display: block; }
+.footer__logo { height: clamp(120px, 15vw, 208px); width: auto; max-width: 100%; display: block; }
 .footer__tagline { color: var(--muted); max-width: 34ch; margin: 1.1rem 0 0; font-size: 0.9rem; }
 .footer__links { display: flex; gap: 2.4rem; flex-wrap: wrap; }
 .footer__col h4 {
