@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "St. Pete Acting Coach | Gillian Arnold Atlas — On-Camera Acting Coaching",
-    "description": "On-camera acting coaching in St. Petersburg, Florida with Gillian Arnold Atlas — award-winning director, producer, and coach with 40+ years in television and film.",
+    "description": "On-camera acting coaching in St. Petersburg, Florida with Gillian Arnold Atlas — award-winning director & coach, 40+ years in TV and film. Book a session.",
     "ogImage": "/images/og-image.jpg"
   },
   "nav": {
@@ -9,10 +9,10 @@
     "brandLine1": "ACTING COACH",
     "brandLine2": "GILLIAN ARNOLD ATLAS",
     "links": [
-      { "label": "Home", "href": "/#home" },
       { "label": "About", "href": "/#about" },
       { "label": "Services", "href": "/#services" },
       { "label": "Gallery", "href": "/gallery" },
+      { "label": "Resources", "href": "/resources/" },
       { "label": "Testimonials", "href": "/#testimonials" },
       { "label": "Contact", "href": "/#contact" }
     ],
@@ -82,6 +82,7 @@
     "ctaLabel": "Let's Work Together",
     "ctaHref": "/#contact",
     "portraitImage": "/images/about-gillian.avif",
+    "portraitAlt": "Gillian Arnold Atlas, on-camera acting coach in St. Petersburg, Florida, operating a camera rig on set",
     "quote": "My mission is simple: to help you discover your truth and share it with the world.",
     "quoteAuthor": "Gillian Arnold Atlas",
     "bio": "I'm Gillian Arnold Atlas, an award-winning director, producer, and on-camera acting coach with more than 40 years of international experience in television and film. Having directed hundreds of episodes of acclaimed drama and unscripted television across Australia and Asia, I bring a director's eye to every performance. Known for helping actors deliver truthful, compelling work on camera, I combine real-world industry expertise with a supportive coaching style that prepares actors for auditions, television, film, and career growth."

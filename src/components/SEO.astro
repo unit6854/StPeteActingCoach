@@ -1,0 +1,158 @@
+---
+/**
+ * Central SEO head: title, meta description, canonical, Open Graph, Twitter,
+ * favicons, and site-wide JSON-LD (ProfessionalService + Person + WebSite,
+ * plus the testimonials as Review markup). Pass page-specific schema (e.g. an
+ * Article for a blog post) via the `schema` prop.
+ */
+import data from "../content/homepage.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string; // override the canonical path (defaults to current URL)
+  ogImage?: string; // path like /images/foo.jpg
+  ogType?: "website" | "article" | "profile";
+  schema?: Record<string, any> | Record<string, any>[]; // extra JSON-LD node(s)
+  noindex?: boolean;
+}
+
+const { seo, contact, social, testimonials } = data;
+const {
+  title,
+  description,
+  canonicalPath,
+  ogImage,
+  ogType = "website",
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const SITE = Astro.site!.href.replace(/\/$/, ""); // https://stpeteactingcoach.com
+const pageTitle = title ?? seo.title;
+const pageDesc = description ?? seo.description;
+const canonical = new URL(
+  canonicalPath ?? Astro.url.pathname,
+  Astro.site
+).href;
+const ogImageUrl = new URL(ogImage ?? seo.ogImage, Astro.site).href;
+
+const phoneDigits = contact.phone.replace(/[^0-9]/g, "");
+const telE164 = "+1" + phoneDigits.replace(/^1/, "");
+const sameAs = (social || []).map((s: any) => s.url).filter(Boolean);
+
+// ---- Site-wide structured data (schema.org) --------------------------------
+const businessId = `${SITE}/#business`;
+const personId = `${SITE}/#gillian`;
+
+const business = {
+  "@type": "ProfessionalService",
+  "@id": businessId,
+  name: "St. Pete Acting Coach — Gillian Arnold Atlas",
+  alternateName: "St. Petersburg Acting Coach",
+  description:
+    "On-camera acting coaching in St. Petersburg, Florida with award-winning director Gillian Arnold Atlas — private coaching, online coaching, self-tape and audition preparation.",
+  url: `${SITE}/`,
+  telephone: telE164,
+  email: contact.email,
+  image: ogImageUrl,
+  logo: `${SITE}/images/footer-logo.png`,
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "St. Petersburg",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  areaServed: [
+    { "@type": "City", name: "St. Petersburg, Florida" },
+    { "@type": "AdministrativeArea", name: "Tampa Bay" },
+    { "@type": "AdministrativeArea", name: "Pinellas County" },
+  ],
+  sameAs,
+  founder: { "@id": personId },
+  knowsAbout: [
+    "On-camera acting",
+    "Self-tape auditions",
+    "Scene study",
+    "Audition preparation",
+    "Film and television acting",
+    "Camera confidence coaching",
+  ],
+  makesOffer: [
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Private Acting Coaching", areaServed: "St. Petersburg, FL" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Online Acting Coaching" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Taking Direction Workshop" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Online Audition Feedback / Self-Tape Coaching" } },
+  ],
+  // Testimonials marked up as genuine, attributed reviews (no star ratings —
+  // add reviewRating only if real numeric ratings are collected).
+  review: (testimonials?.items || []).map((t: any) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: t.name },
+    reviewBody: t.quote,
+    itemReviewed: { "@id": businessId },
+  })),
+};
+
+const person = {
+  "@type": "Person",
+  "@id": personId,
+  name: "Gillian Arnold Atlas",
+  jobTitle: "On-Camera Acting Coach",
+  description:
+    "Award-winning director, producer, and on-camera acting coach with more than 40 years of international experience in television and film.",
+  url: `${SITE}/`,
+  worksFor: { "@id": businessId },
+  sameAs,
+  knowsAbout: [
+    "On-camera acting technique",
+    "Director-led acting coaching",
+    "Self-tape auditions",
+    "Scene study",
+  ],
+};
+
+const website = {
+  "@type": "WebSite",
+  "@id": `${SITE}/#website`,
+  url: `${SITE}/`,
+  name: "St. Pete Acting Coach",
+  publisher: { "@id": businessId },
+  inLanguage: "en-US",
+};
+
+const extra = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const graph = { "@context": "https://schema.org", "@graph": [business, person, website, ...extra] };
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{pageTitle}</title>
+<meta name="description" content={pageDesc} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content="St. Pete Acting Coach" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDesc} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Gillian Arnold Atlas — On-Camera Acting Coach, St. Petersburg, Florida" />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={pageDesc} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<meta name="theme-color" content="#07080c" />
+
+<script type="application/ld+json" set:html={JSON.stringify(graph)} />

@@ -128,6 +128,10 @@ collections:
               - { label: "Button Label", name: "ctaLabel", widget: "string" }
               - { label: "Button Link", name: "ctaHref", widget: "string" }
               - { label: "Portrait Image", name: "portraitImage", widget: "image" }
+              - label: "Portrait Image — Alt Text (SEO)"
+                name: "portraitAlt"
+                widget: "string"
+                hint: "Describe the photo for search engines & screen readers, e.g. 'Gillian Arnold Atlas, on-camera acting coach in St. Petersburg, FL'."
               - { label: "Pull Quote", name: "quote", widget: "text" }
               - { label: "Quote Author", name: "quoteAuthor", widget: "string" }
               - { label: "Biography", name: "bio", widget: "text" }
@@ -247,3 +251,37 @@ collections:
         required: false
         default: ""
         hint: "Controls order — newest shows first. Leave as-is for now."
+
+  # ============================================================
+  # RESOURCES / BLOG — SEO articles (self-tape tips, on-camera technique, etc.)
+  # ============================================================
+  - name: "resources"
+    label: "Resources / Blog"
+    label_singular: "Article"
+    description: "SEO articles for actors. Each post targets a search phrase."
+    folder: "src/content/resources"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title (H1 + browser title)", name: "title", widget: "string" }
+      - label: "Meta Description (SEO)"
+        name: "description"
+        widget: "text"
+        pattern: ['^.{50,165}$', "Aim for 150–160 characters, and lead with your target phrase."]
+        hint: "150–160 characters. Front-load the keyword phrase."
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Last Updated", name: "updated", widget: "datetime", required: false }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - label: "Featured Image — Alt Text"
+        name: "imageAlt"
+        widget: "string"
+        required: false
+        hint: "Required if you add an image. Describe it naturally for SEO & accessibility."
+      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }

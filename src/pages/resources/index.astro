@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import data from "../../content/homepage.json";
+
+let posts = await getCollection("resources", ({ data }) => !data.draft);
+posts = posts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const SITE = Astro.site!.href.replace(/\/$/, "");
+const itemList = {
+  "@type": "ItemList",
+  itemListElement: posts.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE}/resources/${p.id}/`,
+    name: p.data.title,
+  })),
+};
+
+const fmt = (d: Date) =>
+  new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+<Layout
+  title="Acting Resources & Audition Tips | St. Pete Acting Coach"
+  description="Acting resources from St. Petersburg on-camera coach Gillian Arnold Atlas: self-tape tips, on-camera technique, coaching costs, and choosing acting classes."
+  schema={itemList}
+>
+  <Nav data={data.nav} />
+
+  <main class="resources">
+    <header class="container resources__head">
+      <p class="eyebrow reveal">Resources</p>
+      <h1 class="resources__title reveal" data-delay="1">Acting Resources & Audition Tips</h1>
+      <div class="divider-gold reveal" data-delay="1"></div>
+      <p class="resources__intro reveal" data-delay="2">
+        Practical guidance for actors from a working director. Whether you're
+        preparing a self-tape, sharpening your on-camera technique, or looking
+        for acting classes in St. Petersburg and the Tampa Bay area, start here.
+      </p>
+    </header>
+
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="resources__empty">New articles are on the way.</p>
+      ) : (
+        <div class="resources__grid">
+          {posts.map((p, i) => (
+            <a class="rcard reveal" href={`/resources/${p.id}/`} data-delay={String((i % 3) + 1)}>
+              {p.data.featuredImage && (
+                <img class="rcard__img" src={p.data.featuredImage} alt={p.data.imageAlt || p.data.title} loading="lazy" />
+              )}
+              <div class="rcard__body">
+                <time class="rcard__date" datetime={new Date(p.data.date).toISOString()}>{fmt(p.data.date)}</time>
+                <h2 class="rcard__title">{p.data.title}</h2>
+                <p class="rcard__desc">{p.data.description}</p>
+                <span class="rcard__more">Read more &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer data={data.footer} nav={data.nav} contact={data.contact} social={data.social} />
+</Layout>

@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import data from "../../content/homepage.json";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("resources", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, updated, featuredImage, imageAlt } = post.data;
+
+const SITE = Astro.site!.href.replace(/\/$/, "");
+const url = `${SITE}/resources/${post.id}/`;
+const iso = (d: Date) => new Date(d).toISOString();
+
+const articleSchema = {
+  "@type": "Article",
+  "@id": `${url}#article`,
+  headline: title,
+  description,
+  datePublished: iso(date),
+  dateModified: iso(updated ?? date),
+  author: { "@id": `${SITE}/#gillian` },
+  publisher: { "@id": `${SITE}/#business` },
+  mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  ...(featuredImage ? { image: new URL(featuredImage, Astro.site).href } : {}),
+  inLanguage: "en-US",
+};
+
+const breadcrumb = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+    { "@type": "ListItem", position: 2, name: "Resources", item: `${SITE}/resources/` },
+    { "@type": "ListItem", position: 3, name: title, item: url },
+  ],
+};
+
+const fmtDate = new Date(date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+<Layout
+  title={`${title} | St. Pete Acting Coach`}
+  description={description}
+  ogType="article"
+  ogImage={featuredImage}
+  schema={[articleSchema, breadcrumb]}
+>
+  <Nav data={data.nav} />
+
+  <main class="post">
+    <article class="post__inner container">
+      <nav class="post__crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/resources/">Resources</a> <span aria-hidden="true">/</span>
+        <span>{title}</span>
+      </nav>
+
+      <p class="eyebrow">Resources</p>
+      <h1 class="post__title">{title}</h1>
+      <p class="post__meta"><time datetime={iso(date)}>{fmtDate}</time> · By Gillian Arnold Atlas</p>
+      <div class="divider-gold"></div>
+
+      {featuredImage && (
+        <img
+          class="post__hero"
+          src={featuredImage}
+          alt={imageAlt || title}
+          width="1200"
+          height="675"
+          loading="eager"
+        />
+      )}
+
+      <div class="post__body">
+        <Content />
+      </div>
+
+      <div class="post__cta">
+        <p>Ready to put this into practice with a working director?</p>
+        <div class="post__cta-actions">
+          <a class="btn" href="/#contact">Request a Session</a>
+          <a class="btn btn--ghost" href="/#services">See Coaching Options</a>
+        </div>
+      </div>
+
+      <p class="post__back"><a href="/resources/">&larr; All Resources</a></p>
+    </article>
+  </main>
+
+  <Footer data={data.footer} nav={data.nav} contact={data.contact} social={data.social} />
+</Layout>

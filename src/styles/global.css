@@ -1457,3 +1457,95 @@ span.contact__chip { cursor: default; }
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ==========================================================================
+   RESOURCES / BLOG
+   ========================================================================== */
+.resources,
+.post {
+  padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 4rem));
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(201, 161, 92, 0.08), transparent 60%),
+    linear-gradient(180deg, #070a11, #0a0e16 60%, #070a11);
+  min-height: 100vh;
+}
+.resources__head { text-align: center; margin-bottom: clamp(2.4rem, 5vw, 3.6rem); }
+.resources__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  margin: 0.4rem 0 0;
+}
+.resources__intro { color: var(--muted); max-width: 60ch; margin: 0.4rem auto 0; }
+.resources__empty { text-align: center; color: var(--muted); padding-block: 4rem; font-style: italic; }
+.resources__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.2rem, 2.4vw, 1.8rem);
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.rcard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line-soft);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent);
+  overflow: hidden;
+  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.rcard:hover { transform: translateY(-5px); border-color: var(--line); box-shadow: 0 26px 52px -28px rgba(0, 0, 0, 0.9); }
+.rcard__img { width: 100%; height: 180px; object-fit: cover; }
+.rcard__body { padding: clamp(1.4rem, 2.4vw, 1.9rem); display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+.rcard__date { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+.rcard__title { font-family: var(--serif); font-weight: 600; font-size: 1.32rem; line-height: 1.25; margin: 0; color: var(--text); }
+.rcard__desc { color: var(--muted); font-size: 0.92rem; margin: 0; flex: 1; }
+.rcard__more { color: var(--gold); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 0.4rem; }
+
+/* Single post */
+.post__inner { max-width: 760px; }
+.post__crumbs { font-size: 0.74rem; letter-spacing: 0.06em; color: var(--muted-2); margin-bottom: 1.6rem; }
+.post__crumbs a { color: var(--muted); transition: color 0.3s var(--ease); }
+.post__crumbs a:hover { color: var(--gold-bright); }
+.post__title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  line-height: 1.14;
+  margin: 0.4rem 0 0.6rem;
+}
+.post__meta { color: var(--muted-2); font-size: 0.82rem; letter-spacing: 0.04em; }
+.post .divider-gold { margin-left: 0; }
+.post__hero { width: 100%; height: auto; border: 1px solid var(--line-soft); margin: 1.8rem 0; }
+.post__body { color: var(--text); font-size: 1.05rem; line-height: 1.85; }
+.post__body h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  color: var(--text);
+  margin: 2.4rem 0 0.8rem;
+}
+.post__body p { color: var(--muted); margin: 0 0 1.2rem; }
+.post__body a { color: var(--gold-bright); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); transition: text-decoration-color 0.3s var(--ease); }
+.post__body a:hover { text-decoration-color: var(--gold); }
+.post__body ul { color: var(--muted); margin: 0 0 1.2rem; padding-left: 1.2rem; }
+.post__body li { margin-bottom: 0.5rem; }
+.post__body blockquote {
+  border-left: 2px solid var(--gold);
+  margin: 1.6rem 0;
+  padding: 0.4rem 0 0.4rem 1.2rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.post__body hr { border: 0; border-top: 1px solid var(--line-soft); margin: 2.4rem 0; }
+.post__cta {
+  margin-top: 3rem;
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  border: 1px solid var(--line);
+  text-align: center;
+  background: linear-gradient(180deg, rgba(201, 161, 92, 0.06), transparent);
+}
+.post__cta p { color: var(--text); font-family: var(--serif); font-size: 1.2rem; margin: 0 0 1.2rem; }
+.post__cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.post__back { margin-top: 2rem; }
+.post__back a { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }

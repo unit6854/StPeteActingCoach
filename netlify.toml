@@ -5,6 +5,13 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Force a single canonical host: www -> non-www (301).
+[[redirects]]
+  from = "https://www.stpeteactingcoach.com/*"
+  to = "https://stpeteactingcoach.com/:splat"
+  status = 301
+  force = true
+
 # Long-cache immutable, hashed Astro assets.
 [[headers]]
   for = "/_astro/*"
@@ -18,3 +25,7 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Pretty URLs keep a single trailing-slash form (avoids duplicate content).
+[build.processing]
+  skip_processing = false

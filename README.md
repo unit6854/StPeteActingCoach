@@ -115,3 +115,24 @@ Site/
 ├─ astro.config.mjs
 └─ netlify.toml
 ```
+
+## SEO
+
+- **Sitemap:** auto-generated at `/sitemap-index.xml` (via `@astrojs/sitemap`), referenced by `/robots.txt`.
+- **Metadata + schema:** all `<head>` tags and JSON-LD live in `src/components/SEO.astro`
+  (ProfessionalService + Person + WebSite site-wide; testimonials as Review markup;
+  Article + BreadcrumbList on blog posts). Each page passes its own `title`/`description`.
+- **Canonical host:** `netlify.toml` 301-redirects `www` → non-www.
+- After deploy, validate with Google's **Rich Results Test** and submit the sitemap in
+  **Google Search Console**.
+
+## Adding a blog post (Resources)
+
+1. Go to `/admin` → **Resources / Blog** → **New Article**.
+2. Fill in:
+   - **Title** — becomes the H1 and browser title (e.g. *"How to Prepare for a Self-Tape Audition"*).
+   - **Meta Description** — 150–160 characters, lead with the search phrase you're targeting.
+   - **Publish Date**, optional **Featured Image** (+ its **Alt Text**), and the **Body** (markdown).
+3. Inside the body, link to `/#services` and `/#contact` where natural (internal linking helps SEO).
+4. **Publish.** Netlify rebuilds; the post appears at `/resources/<slug>/`, is added to the
+   sitemap automatically, and gets Article structured data with no extra work.
