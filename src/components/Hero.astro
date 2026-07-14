@@ -4,7 +4,7 @@ interface Props { data: any; }
 const { data } = Astro.props;
 const hasPhoto = data.heroImage && data.heroImage.trim() !== "";
 ---
-<section class="hero grain vignette" id="home">
+<section class="hero" id="home">
   <div class="hero__bg"></div>
   {hasPhoto && (
     <div class="hero__photo" style={`background-image:url('${data.heroImage}')`}></div>
