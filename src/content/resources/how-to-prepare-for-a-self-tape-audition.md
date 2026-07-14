@@ -11,9 +11,6 @@ Self-tapes are now the front door to most film and television auditions. The
 good news: a strong self-tape is something you can learn to produce
 consistently. Here's how to prepare a self-tape audition that actually books.
 
-> **This is a starter draft.** Replace the copy below with Gillian's own guidance
-> — the structure, headings, and SEO metadata are ready to go.
-
 ## Get your framing and background right
 
 Frame a clean medium close-up (chest and head), leave a little headroom, and

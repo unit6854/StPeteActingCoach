@@ -11,9 +11,6 @@ On-camera acting is its own craft. The camera sees everything — and it rewards
 truth over performance. Here's what that means from the perspective of a working
 director.
 
-> **This is a starter draft.** Replace the copy below with Gillian's own words —
-> the structure, headings, and SEO metadata are ready to go.
-
 ## The camera reads your thoughts
 
 On stage you project to the back row. On camera, the lens catches the smallest,

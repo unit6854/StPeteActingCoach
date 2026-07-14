@@ -11,9 +11,6 @@ Searching for acting classes in St. Petersburg or the wider Tampa Bay area?
 Not all classes are created equal. Here's how to choose one that actually moves
 your career forward.
 
-> **This is a starter draft.** Tailor the copy to Gillian's classes; the
-> structure, headings, and SEO metadata are ready.
-
 ## Look for real industry experience
 
 Anyone can call themselves a coach. The best acting classes are led by people

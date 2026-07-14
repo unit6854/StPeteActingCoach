@@ -10,9 +10,6 @@ draft: false
 If you're comparing private acting coaches in Florida, pricing can feel all over
 the place. Here's how to think about cost — and value — so you invest wisely.
 
-> **This is a starter draft.** Add Gillian's actual rates and packages when
-> you're ready; the structure and SEO metadata are already in place.
-
 ## What drives the price
 
 Rates usually reflect the coach's experience, the format (in-person vs. online),
