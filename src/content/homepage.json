@@ -5,7 +5,7 @@
     "ogImage": "/images/og-image.jpg"
   },
   "nav": {
-    "logo": "/images/nav-logo.png",
+    "logo": "/images/nav-logo-gold.webp",
     "brandLine1": "ACTING COACH",
     "brandLine2": "GILLIAN ARNOLD ATLAS",
     "links": [
@@ -21,30 +21,30 @@
   },
   "hero": {
     "eyebrow": "On-Camera Acting Coach",
-    "titleLine1": "ACTING",
-    "titleLine2Gold": "IS TRUTH.",
-    "titleLine3": "I TEACH YOU",
-    "titleLine4": "HOW TO BRING IT.",
+    "titleLine1": "TRAIN WITH THE",
+    "titleLine2Gold": "EYE OF A DIRECTOR.",
+    "titleLine3": "PERFORM WITH THE",
+    "titleLine4": "CONFIDENCE OF A PRO.",
     "subtitleLine1": "Transform your performance.",
     "subtitleLine2": "Elevate your career.",
     "primaryCtaLabel": "Work With Gillian",
     "primaryCtaHref": "/#services",
     "videoCtaLabel": "Watch Gillian's Approach",
     "videoCtaHref": "/#about",
-    "heroImage": "/images/hero-bg-2.jpg"
+    "heroImage": "/images/hero-bg-2.webp"
   },
   "location": {
     "eyebrow": "Based In",
     "title": "St. Petersburg, Florida",
     "paragraph1": "A creative hub. A supportive community. A place where artists come to grow, collaborate, and build real careers.",
-    "paragraph2": "World-class training. Local heart. Industry connections that open doors. Real results for actors who are ready.",
+    "paragraph2": "World-class training. Local heart. Industry connections that open doors. Real results for actors who are ready. You'll learn how directors think, what they're watching for, how to respond confidently to adjustments, and how to become the actor everyone wants to work with again.",
     "signature": "Gillian Arnold Atlas",
     "tags": "On-Camera | TV & Film | Auditions | Self-Tape | Scene Study",
-    "leftImage": "/images/bridge-bg.jpg",
-    "rightImage": "/images/camera-bg.jpg"
+    "leftImage": "/images/bridge-bg.webp",
+    "rightImage": "/images/camera-bg.webp"
   },
   "valueProps": {
-    "backgroundImage": "/images/stage-bg.jpg",
+    "backgroundImage": "/images/stage-bg.webp",
     "headingLine1": "You Bring The Drive.",
     "headingLine2Gold": "I'll Bring The Direction.",
     "items": [
@@ -71,21 +71,21 @@
     ]
   },
   "about": {
-    "backgroundImage": "/images/water-bg.jpg",
-    "headingLine1": "This Is More Than",
-    "headingLine2": "Acting. This Is",
-    "headingLine3Gold": "Your Moment.",
-    "subLine1": "Step into your power.",
-    "subLine2": "Tell the truth.",
-    "subLine3": "Create the career",
-    "subLine4": "you're meant to have.",
+    "backgroundImage": "/images/water-bg.webp",
+    "headingLine1": "Learn What Directors Need.",
+    "headingLine2": "Become The Actor",
+    "headingLine3Gold": "They Remember.",
+    "subLine1": "Beyond Acting Class.",
+    "subLine2": "Real Preparation For Real Productions.",
+    "subLine3": "Gain insight into the storytelling, pacing",
+    "subLine4": "and the character decisions that shape every scene.",
     "ctaLabel": "Let's Work Together",
     "ctaHref": "/#contact",
-    "portraitImage": "/images/about-gillian.avif",
-    "portraitAlt": "Gillian Arnold Atlas, on-camera acting coach in St. Petersburg, Florida, operating a camera rig on set",
-    "quote": "My mission is simple: to help you discover your truth and share it with the world.",
+    "portraitImage": "/images/about-gillian-2.webp",
+    "portraitAlt": "Gillian Arnold Atlas, on-camera acting coach in St. Petersburg, Florida, smiling behind a shoulder-mounted camera rig",
+    "quote": "My mission is to get you to walk onto every set ready.",
     "quoteAuthor": "Gillian Arnold Atlas",
-    "bio": "I'm Gillian Arnold Atlas, an award-winning director, producer, and on-camera acting coach with more than 40 years of international experience in television and film. Having directed hundreds of episodes of acclaimed drama and unscripted television across Australia and Asia, I bring a director's eye to every performance. Known for helping actors deliver truthful, compelling work on camera, I combine real-world industry expertise with a supportive coaching style that prepares actors for auditions, television, film, and career growth."
+    "bio": "I'm Gillian Arnold Atlas, an award-winning director, producer, and on-camera acting coach with more than 40 years of international experience in television and film. Having directed hundreds of episodes of acclaimed drama and unscripted television across Australia and Asia, I bring a director's eye to every performance. Known for helping actors deliver truthful, compelling work on camera, I combine real-world industry expertise with a supportive coaching style that prepares actors for auditions, television, film, commercials, streaming, social media content and beyond — or just to have fun."
   },
   "testimonials": {
     "eyebrow": "Success Stories",
@@ -93,17 +93,17 @@
     "items": [
       {
         "name": "Adam Pietriapaoli",
-        "image": "/images/testimonial-adam.avif",
+        "image": "/images/testimonial-adam.webp",
         "quote": "Gillian has an exceptional ability to tune into each individual actor and find the specific notes and directions to give each person to assist in finding a deeper, more connected level of work."
       },
       {
         "name": "Meg MacRae",
-        "image": "/images/testimonial-meg.avif",
+        "image": "/images/testimonial-meg.webp",
         "quote": "Gillian has an exceptional ability to tune into each individual actor and find the specific notes and directions to give each person to assist in finding deeper, more connected levels of work. She is sharp and highly imaginative and helps her students expand their craft in all ways."
       },
       {
         "name": "Chris Jablen",
-        "image": "/images/testimonial-chris.avif",
+        "image": "/images/testimonial-chris.webp",
         "quote": "I love how Gillian's class teaches us to be more adaptable to the moment-to-moment changes and helps us to understand what is required of us on set. I recommend this class to anyone of any skill level. You will walk away more confident and a much better actor than when you started."
       }
     ]
@@ -139,6 +139,13 @@
         "text": "Work with Gillian on perfecting your audition tape. Submit online and use video conferencing to refine it until it's ready to send to the casting agent.",
         "ctaLabel": "Get Feedback",
         "ctaHref": "/#contact"
+      },
+      {
+        "icon": "monitor",
+        "title": "TV Series Intensive",
+        "text": "Television is its own craft — building a character over months while adapting to evolving storylines and demanding schedules. This specialised coaching covers fast-paced production, long-term character development, continuity across episodes, quick responses to script rewrites, on-set adjustments after director feedback, collaborating with directors and crew, and delivering consistent performances under pressure. These are the practical skills actors usually don't learn until they're already on set — you'll learn them before you get there.",
+        "ctaLabel": "Enquire About TV Coaching",
+        "ctaHref": "/#contact"
       }
     ]
   },
@@ -165,7 +172,7 @@
     { "platform": "linkedin", "url": "https://www.linkedin.com/in/gillianarnold888/" }
   ],
   "footer": {
-    "logo": "/images/footer-logo.png",
+    "logo": "/images/footer-logo.webp",
     "brandLine1": "ACTING COACH",
     "brandLine2": "GILLIAN ARNOLD ATLAS",
     "tagline": "On-camera acting coaching in St. Petersburg, Florida.",

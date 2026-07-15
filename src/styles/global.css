@@ -590,11 +590,13 @@ html {
 }
 .loc__p { color: var(--muted); margin: 1.4rem auto 0; max-width: 46ch; }
 .loc__sign {
-  font-family: var(--script);
+  font-family: var(--serif);
+  font-weight: 700;
   color: var(--gold-bright);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 0.03em;
   margin-top: 1.8rem;
-  line-height: 1;
+  line-height: 1.1;
 }
 .loc__tags {
   margin-top: 1.4rem;
@@ -925,6 +927,8 @@ html {
 .svc__head { text-align: center; margin-bottom: clamp(2.6rem, 5vw, 4rem); }
 .svc__title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 3.6vw, 2.6rem); margin: 0.4rem 0 0; }
 .svc__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.2rem, 2.4vw, 1.8rem); max-width: 960px; margin-inline: auto; }
+/* A lone final card (odd total) becomes a full-width feature card instead of an orphan */
+.svc__grid .svc__card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .svc__card {
   border: 1px solid var(--line-soft);
   background: linear-gradient(180deg, rgba(255,255,255,0.028), transparent);

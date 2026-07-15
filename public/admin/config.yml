@@ -9,7 +9,7 @@ public_folder: "/images"
 # Nicer editor UX: show a live-ish preview path and keep entries tidy.
 site_url: https://stpeteactingcoach.com
 display_url: https://stpeteactingcoach.com
-logo_url: /images/nav-tile.png
+logo_url: /images/nav-tile.webp
 
 collections:
   - name: "pages"
