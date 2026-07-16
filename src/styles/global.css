@@ -482,7 +482,7 @@ html {
 .hero__title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  font-size: clamp(1.52rem, 3.2vw, 2.72rem);
   line-height: 1.14;
   letter-spacing: 0.045em;
   margin: 0;
