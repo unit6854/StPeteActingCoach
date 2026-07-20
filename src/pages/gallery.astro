@@ -64,12 +64,17 @@ const isVideo = (src: string) =>
                   </span>
                 </div>
               ) : (
-                <img
-                  class="gallery__media"
-                  src={item.media}
-                  alt={item.caption || "Gallery image"}
-                  loading="lazy"
-                />
+                <>
+                  <img
+                    class="gallery__media"
+                    src={item.media}
+                    alt={item.caption || "Gallery image"}
+                    loading="lazy"
+                  />
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-3.4-3.4"/></svg>
+                  </span>
+                </>
               )}
               {item.caption && (
                 <figcaption class="gallery__caption">{item.caption}</figcaption>
@@ -86,18 +91,31 @@ const isVideo = (src: string) =>
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
     <div class="lightbox__inner" id="lightboxInner"></div>
     <p class="lightbox__caption" id="lightboxCaption"></p>
+    <p class="lightbox__counter" id="lightboxCounter"></p>
   </div>
 
   <script>
     const lb = document.getElementById("lightbox");
     const inner = document.getElementById("lightboxInner");
     const cap = document.getElementById("lightboxCaption");
+    const counter = document.getElementById("lightboxCounter");
     const closeBtn = document.getElementById("lightboxClose");
+    const prevBtn = document.getElementById("lightboxPrev");
+    const nextBtn = document.getElementById("lightboxNext");
+    const figs = Array.from(document.querySelectorAll<HTMLElement>(".gallery__item"));
+    let idx = -1;
 
-    function openItem(fig: HTMLElement) {
-      if (!lb || !inner || !cap) return;
+    function render(i: number) {
+      if (!inner || !cap || !counter) return;
+      const fig = figs[i];
       const media = fig.getAttribute("data-media") || "";
       const isVid = fig.getAttribute("data-video") === "1";
       const caption = fig.getAttribute("data-caption") || "";
@@ -118,9 +136,16 @@ const isVideo = (src: string) =>
         inner.appendChild(img);
       }
       cap.textContent = caption;
+      counter.textContent = `${i + 1} / ${figs.length}`;
+    }
+
+    function openItem(i: number) {
+      if (!lb) return;
+      idx = i;
+      render(i);
       lb.classList.add("open");
       lb.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     }
 
     function close() {
@@ -128,18 +153,29 @@ const isVideo = (src: string) =>
       lb.classList.remove("open");
       lb.setAttribute("aria-hidden", "true");
       inner.innerHTML = "";
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
 
-    document.querySelectorAll<HTMLElement>(".gallery__item").forEach((fig) => {
-      fig.addEventListener("click", () => openItem(fig));
+    function go(dir: number) {
+      if (!figs.length) return;
+      idx = (idx + dir + figs.length) % figs.length;
+      render(idx);
+    }
+
+    figs.forEach((fig, i) => {
+      fig.addEventListener("click", () => openItem(i));
     });
     closeBtn?.addEventListener("click", close);
+    prevBtn?.addEventListener("click", (e) => { e.stopPropagation(); go(-1); });
+    nextBtn?.addEventListener("click", (e) => { e.stopPropagation(); go(1); });
     lb?.addEventListener("click", (e) => {
       if (e.target === lb) close();
     });
     document.addEventListener("keydown", (e) => {
+      if (!lb || !lb.classList.contains("open")) return;
       if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") go(1);
+      else if (e.key === "ArrowLeft") go(-1);
     });
 
     // Autoplay muted video previews when they scroll into view

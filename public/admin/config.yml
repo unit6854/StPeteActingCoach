@@ -63,8 +63,13 @@ collections:
               - { label: "Subtitle Line 2", name: "subtitleLine2", widget: "string" }
               - { label: "Primary Button Label", name: "primaryCtaLabel", widget: "string" }
               - { label: "Primary Button Link", name: "primaryCtaHref", widget: "string" }
-              - { label: "Video Link Label", name: "videoCtaLabel", widget: "string" }
-              - { label: "Video Link URL", name: "videoCtaHref", widget: "string" }
+              - { label: "Play Button Label", name: "videoCtaLabel", widget: "string" }
+              - label: "Intro Video (MP4)"
+                name: "videoSrc"
+                widget: "file"
+                required: false
+                hint: "Plays in a pop-up when a visitor clicks the play button. Keep it short & web-sized."
+              - { label: "Video Poster Image", name: "videoPoster", widget: "image", required: false }
               - label: "Background Photo (optional)"
                 name: "heroImage"
                 widget: "image"
@@ -248,9 +253,7 @@ collections:
       - label: "Date"
         name: "date"
         widget: "datetime"
-        required: false
-        default: ""
-        hint: "Controls order — newest shows first. Leave as-is for now."
+        hint: "Controls order — newest shows first. Today's date fills in automatically; you can leave it."
 
   # ============================================================
   # RESOURCES / BLOG — SEO articles (self-tape tips, on-camera technique, etc.)

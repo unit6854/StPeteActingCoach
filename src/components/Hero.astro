@@ -25,11 +25,56 @@ const hasPhoto = data.heroImage && data.heroImage.trim() !== "";
       </p>
       <div class="hero__cta reveal" data-delay="3">
         <a class="btn" href={data.primaryCtaHref}>{data.primaryCtaLabel}</a>
-        <a class="play-link" href={data.videoCtaHref}>
+        <button type="button" class="play-link" id="heroVideoBtn" aria-haspopup="dialog">
           <span class="play-link__ring"><Icon name="play" class="icon" /></span>
           {data.videoCtaLabel}
-        </a>
+        </button>
       </div>
     </div>
   </div>
+
+  {data.videoSrc && (
+    <div class="video-modal" id="heroVideoModal" role="dialog" aria-modal="true" aria-label={data.videoCtaLabel}>
+      <button type="button" class="video-modal__close" id="heroVideoClose" aria-label="Close video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <div class="video-modal__frame">
+        <video id="heroVideoEl" class="video-modal__video" src={data.videoSrc} poster={data.videoPoster} controls playsinline preload="none"></video>
+      </div>
+    </div>
+  )}
 </section>
+
+<script>
+  const btn = document.getElementById("heroVideoBtn");
+  const modal = document.getElementById("heroVideoModal");
+  const closeBtn = document.getElementById("heroVideoClose");
+  const video = document.getElementById("heroVideoEl") as HTMLVideoElement | null;
+
+  if (btn && modal && video) {
+    const open = () => {
+      modal.classList.add("open");
+      document.documentElement.style.overflow = "hidden";
+      try { video.currentTime = 0; } catch {}
+      const p = video.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+      closeBtn?.focus();
+    };
+    const close = () => {
+      modal.classList.remove("open");
+      video.pause();
+      document.documentElement.style.overflow = "";
+      btn.focus();
+    };
+    btn.addEventListener("click", open);
+    closeBtn?.addEventListener("click", close);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) close();
+    });
+  }
+</script>
