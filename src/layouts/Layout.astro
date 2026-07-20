@@ -11,14 +11,16 @@ interface Props {
   ogType?: "website" | "article" | "profile";
   schema?: Record<string, any> | Record<string, any>[];
   noindex?: boolean;
+  preloadImage?: string;
 }
-const seoProps = Astro.props;
+const { preloadImage, ...seoProps } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <SEO {...seoProps} />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

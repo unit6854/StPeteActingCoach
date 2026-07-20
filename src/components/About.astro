@@ -24,7 +24,7 @@ const hasBg = data.backgroundImage && data.backgroundImage.trim() !== "";
     </div>
 
     <figure class="about__portrait reveal" data-delay="1">
-      <img src={data.portraitImage} alt={data.portraitAlt || "Gillian Arnold Atlas, on-camera acting coach in St. Petersburg, Florida"} width="360" height="444" loading="lazy" />
+      <img src={data.portraitImage} alt={data.portraitAlt || "Gillian Arnold Atlas, on-camera acting coach in St. Petersburg, Florida"} width="360" height="444" loading="lazy" decoding="async" />
     </figure>
 
     <div class="about__right reveal" data-delay="2">

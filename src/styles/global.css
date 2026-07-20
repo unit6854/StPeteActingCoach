@@ -237,7 +237,7 @@ html {
 .video-modal.open { opacity: 1; visibility: visible; }
 .video-modal__frame {
   position: relative;
-  width: min(1040px, 100%);
+  width: min(780px, 92vw);
   aspect-ratio: 16 / 9;
   background: #000;
   border: 1px solid rgba(201, 161, 92, 0.4);

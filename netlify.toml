@@ -18,6 +18,18 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Cache images: fast repeat visits, revalidate in the background, refresh within a day if replaced.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+# Cache the intro video (rarely changes).
+[[headers]]
+  for = "/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=2592000"
+
 # Baseline security headers (applied to every response).
 [[headers]]
   for = "/*"

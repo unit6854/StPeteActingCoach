@@ -33,19 +33,20 @@ const hasPhoto = data.heroImage && data.heroImage.trim() !== "";
     </div>
   </div>
 
-  {data.videoSrc && (
-    <div class="video-modal" id="heroVideoModal" role="dialog" aria-modal="true" aria-label={data.videoCtaLabel}>
-      <button type="button" class="video-modal__close" id="heroVideoClose" aria-label="Close video">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      </button>
-      <div class="video-modal__frame">
-        <video id="heroVideoEl" class="video-modal__video" src={data.videoSrc} poster={data.videoPoster} controls playsinline preload="none"></video>
-      </div>
-    </div>
-  )}
 </section>
+
+{data.videoSrc && (
+  <div class="video-modal" id="heroVideoModal" role="dialog" aria-modal="true" aria-label={data.videoCtaLabel}>
+    <button type="button" class="video-modal__close" id="heroVideoClose" aria-label="Close video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <div class="video-modal__frame">
+      <video id="heroVideoEl" class="video-modal__video" src={data.videoSrc} poster={data.videoPoster} controls playsinline preload="none"></video>
+    </div>
+  </div>
+)}
 
 <script>
   const btn = document.getElementById("heroVideoBtn");

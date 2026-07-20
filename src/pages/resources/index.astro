@@ -51,7 +51,7 @@ const fmt = (d: Date) =>
           {posts.map((p, i) => (
             <a class="rcard reveal" href={`/resources/${p.id}/`} data-delay={String((i % 3) + 1)}>
               {p.data.featuredImage && (
-                <img class="rcard__img" src={p.data.featuredImage} alt={p.data.imageAlt || p.data.title} loading="lazy" />
+                <img class="rcard__img" src={p.data.featuredImage} alt={p.data.imageAlt || p.data.title} loading="lazy" decoding="async" />
               )}
               <div class="rcard__body">
                 <time class="rcard__date" datetime={new Date(p.data.date).toISOString()}>{fmt(p.data.date)}</time>
