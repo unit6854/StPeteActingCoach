@@ -68,7 +68,7 @@ collections:
                 name: "videoSrc"
                 widget: "file"
                 required: false
-                hint: "Plays in a pop-up when a visitor clicks the play button. Keep it short & web-sized."
+                hint: "Plays in a pop-up when a visitor clicks the play button. Upload an MP4 — most .MOV files (from iPhones/cameras) use a format browsers can't play; if you only have a .MOV, send it to your developer to convert."
               - { label: "Video Poster Image", name: "videoPoster", widget: "image", required: false }
               - label: "Background Photo (optional)"
                 name: "heroImage"
@@ -248,12 +248,13 @@ collections:
       - label: "Image or Video"
         name: "media"
         widget: "file"
-        hint: "Photo (JPG, PNG, WEBP, AVIF, GIF) or video (MP4, WEBM, MOV)."
+        hint: "Photo (JPG, PNG, WEBP, AVIF, GIF) or video (MP4 recommended — most .MOV files won't play in browsers)."
       - { label: "Caption", name: "caption", widget: "string", required: false }
       - label: "Date"
         name: "date"
         widget: "datetime"
-        hint: "Controls order — newest shows first. Today's date fills in automatically; you can leave it."
+        required: false
+        hint: "Controls order — newest shows first. Auto-fills with today; you can leave it as-is."
 
   # ============================================================
   # RESOURCES / BLOG — SEO articles (self-tape tips, on-camera technique, etc.)
